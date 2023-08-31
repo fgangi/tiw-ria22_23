@@ -179,6 +179,8 @@ function Render () {
             //create a row for the image
             let insideImage = document.createElement("tr");
             let image = document.createElement("img");
+            image.height = '200';
+            image.width = '200';
             image.src = songsInPlaylist[i].imageContent;
             insideImage.appendChild(image);
             insideTable.appendChild(insideImage);
