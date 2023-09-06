@@ -68,7 +68,7 @@ public class CreateSongServlet extends HttpServlet {
 		if(error == null && (songTitle.length() > 50)) error = "Song title is too long";
 		if(error == null && !( genre.equals("Others") || genre.equals("Rap") || genre.equals("Rock") || genre.equals("Jazz") || genre.equals("Pop") )) error = "Genre not valid";
 		if(error == null && (singer.length() > 50)) error = "Singer name is too long";
-		if(error == null && (singer.length() > 50)) error = "Album title is too long";
+		if(error == null && (albumTitle.length() > 50)) error = "Album title is too long";
 		
 		if(error == null) {
 			try {
@@ -145,7 +145,7 @@ public class CreateSongServlet extends HttpServlet {
 					return;
 				}
 			}
-			
+
 			if(error == null) {
 				try {
 					Files.copy(fileAudio.getInputStream(), new File(fileAudioPath).toPath());
