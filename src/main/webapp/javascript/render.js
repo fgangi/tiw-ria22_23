@@ -89,19 +89,19 @@ function Render () {
     this.showHomePage = function () {
 
         //make the home page the only visible page
-        document.getElementById("home-page").className = "on";
-        document.getElementById("playlist-page").className = "off";
-        document.getElementById("player-page").className = "off";
-        document.getElementById("sorting-page").className = "off";
+        document.getElementById("home-page").style.display = "block";
+        document.getElementById("playlist-page").style.display = "none";
+        document.getElementById("player-page").style.display = "none";
+        document.getElementById("sorting-page").style.display = "none";
 
         let homeButton = document.getElementById("home-button");
-        homeButton.className = "off";
+        homeButton.style.display = "none";
         homeButton.onclick = null;
 
         //writing the welcome message
         let home = document.getElementById("home-page");
         let title = home.querySelector("#title");
-        title.textContent = "Welcome back " + sessionStorage.getItem("userName");
+        title.textContent = "Welcome " + sessionStorage.getItem("userName");
 
         if (listPlaylist.length === 0) {
             makeCall("GET", "GetPlaylistList", null, function (res) {
@@ -179,8 +179,8 @@ function Render () {
             //create a row for the image
             let insideImage = document.createElement("tr");
             let image = document.createElement("img");
-            image.height = '200';
-            image.width = '200';
+            image.height = 200;
+            image.width = 200;
             image.src = songsInPlaylist[i].imageContent;
             insideImage.appendChild(image);
             insideTable.appendChild(insideImage);
@@ -227,12 +227,12 @@ function Render () {
         if (lowerBound <= 0) {
 
             //if the lower bound is lower than zero then we trun off the prec button
-            prec.className = "off";
+            prec.style.display = "none";
             prec.onclick = null;
         } else {
 
             //if the lower bound is greater than zero then we turn on the prec button
-            prec.className = "on";
+            prec.style.display = "block";
             prec.onclick = function (e) {
 								e.preventDefault();
 				                lowerBound -= 5;
@@ -244,12 +244,12 @@ function Render () {
         if (lowerBound + 5 >= songsInPlaylist.length) {
 
             //if the lower bound is greater than song In Playlist then we turn off the next button
-            next.className = "off";
+            next.style.display = "none";
             next.onclick = null;
         } else {
 
             //if the lower bound is less than song In Playlist then we turn on the next button
-            next.className = "on";
+            next.style.display = "block";
             next.onclick = function (e) {
 								e.preventDefault();
 					            lowerBound += 5;
@@ -300,13 +300,13 @@ function Render () {
     this.showPlaylistPage = function (playlistName) {
 
         //make the playlist page the only visible page
-        document.getElementById("home-page").className = "off";
-        document.getElementById("playlist-page").className = "on";
-        document.getElementById("player-page").className = "off";
-        document.getElementById("sorting-page").className = "off";
+        document.getElementById("home-page").style.display = "none";
+        document.getElementById("playlist-page").style.display = "block";
+        document.getElementById("player-page").style.display = "none";
+        document.getElementById("sorting-page").style.display = "none";
 
         let homeButton = document.getElementById("home-button");
-        homeButton.className = "on";
+        homeButton.style.display = "block";
         homeButton.onclick = function(e){
 								e.preventDefault();
 								reset.resetPlaylistPage();
@@ -322,7 +322,7 @@ function Render () {
         playlist.querySelector("#modifying").textContent = "UPDATE " + playlistName;
         
         //enable the sorting button
-        playlist.querySelector("#editSortingButton").className = "on";
+        playlist.querySelector("#editSortingButton").style.display = "block";
         playlist.querySelector("#editSortingButton").onclick = function(e) {
 			e.preventDefault();
 			reset.resetPlaylistPage();
@@ -341,13 +341,13 @@ function Render () {
     this.playSong = function (song, details) {
 
         //make the player page the only visible page
-        document.getElementById("home-page").className = "off";
-        document.getElementById("playlist-page").className = "off";
-        document.getElementById("player-page").className = "on";
-        document.getElementById("sorting-page").className = "off";
+        document.getElementById("home-page").style.display = "none";
+        document.getElementById("playlist-page").style.display = "none";
+        document.getElementById("player-page").style.display = "block";
+        document.getElementById("sorting-page").style.display = "none";
 
 		let homeButton = document.getElementById("home-button");
-        homeButton.className = "on";
+        homeButton.style.display = "block";
         homeButton.onclick = function(e){
 								 e.preventDefault();
 								 reset.resetPlayerPage();
@@ -362,6 +362,8 @@ function Render () {
         let div = document.createElement("div");
         let image = document.createElement("img");
         image.src = song.imageContent;
+        image.height = 200;
+        image.width = 200;
         div.appendChild(image);
         infoContainer.appendChild(div);
 
@@ -399,13 +401,13 @@ function Render () {
     this.showSortingPage = function (playlistName) {
 
         //make the sorting page the only visible page
-        document.getElementById("home-page").className = "off";
-        document.getElementById("playlist-page").className = "off";
-        document.getElementById("player-page").className = "off";
-        document.getElementById("sorting-page").className = "on";
+        document.getElementById("home-page").style.display = "none";
+        document.getElementById("playlist-page").style.display = "none";
+        document.getElementById("player-page").style.display = "none";
+        document.getElementById("sorting-page").style.display = "block";
 
         let homeButton = document.getElementById("home-button");
-        homeButton.className = "on";
+        homeButton.style.display = "block";
         homeButton.onclick = function(e){
 								 e.preventDefault();
 								 reset.resetSortingPage();
